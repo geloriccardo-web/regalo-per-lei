@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Un regalo per te</title>
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(black, #1a001a);
+    font-family: 'Georgia', serif;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    padding: 60px 20px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.6;
+}
+
+button {
+    margin-top: 40px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #660033;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #99004d;
+}
+
+#gift {
+    display: none;
+    margin-top: 40px;
+}
+
+img {
+    max-width: 80%;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #99004d;
+}
+
+.final-text {
+    margin-top: 25px;
+    font-size: 18px;
+    font-style: italic;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Ho qualcosa per te...</h1>
+
+<p>
+Ci sono cose che non si comprano…  
+si creano.<br><br>
+
+Ho messo tempo, pensieri  
+e un pezzo di cuore  
+dentro qualcosa che parla di te.<br><br>
+
+Se sei pronta…  
+scoprilo.
+</p>
+
+<button onclick="showGift()">
+Scopri cosa ho per te
+</button>
+
+<div id="gift">
+
+<img src="https://via.placeholder.com/600x400.png?text=Qui+apparirà+il+disegno" alt="Disegno">
+
+<p class="final-text">
+Questo non è solo un disegno.  
+È il modo più silenzioso  
+che ho trovato  
+per dirti che sei importante per me.
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+function showGift() {
+    document.getElementById("gift").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
