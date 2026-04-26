@@ -5,36 +5,52 @@
 <title>Un regalo per te</title>
 
 <style>
-body {
-    margin: 0;
-    background: linear-gradient(black, #1a001a);
+body{
+    margin:0;
+    background: radial-gradient(circle, #0a0000, #000000);
     font-family: 'Georgia', serif;
     color: white;
     text-align: center;
+    overflow:hidden;
 }
 
-.container {
-    padding: 60px 20px;
+.container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
 }
 
-h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+#gift{
+    font-size:60px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-p {
-    font-size: 18px;
-    max-width: 600px;
-    margin: auto;
-    line-height: 1.6;
+#gift:hover{
+    transform:scale(1.2);
 }
 
-button {
-    margin-top: 40px;
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #660033;
-    color: white;
+#message{
+    display:none;
+    margin-top:20px;
+    animation:fade 2s ease;
+}
+
+h1{
+    font-size:28px;
+}
+
+p{
+    font-size:18px;
+    max-width:300px;
+    margin:auto;
+    line-height:1.5;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity    color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
