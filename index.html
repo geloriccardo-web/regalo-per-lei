@@ -7,7 +7,7 @@
 <style>
 body{
   margin:0;
-  background:radial-gradient(circle,#1a0008,#000);
+  background:radial-gradient(circle,#25000d,#000);
   color:white;
   font-family:Georgia,serif;
   text-align:center;
@@ -24,7 +24,8 @@ body{
 }
 
 h1{
-  text-shadow:0 0 20px #ff0066;
+  text-shadow:0 0 25px #ff0066;
+  animation:fade 2s ease;
 }
 
 p{
@@ -33,32 +34,32 @@ p{
 }
 
 #gift{
-  font-size:85px;
+  font-size:90px;
   cursor:pointer;
   margin-top:25px;
   animation:pulse 1.4s infinite;
-  filter:drop-shadow(0 0 30px #ff007f);
+  filter:drop-shadow(0 0 35px #ff007f);
 }
 
 #message{
   display:none;
   margin-top:25px;
-  animation:reveal 2s ease;
+  animation:cinema 2.5s ease;
 }
 
 #message img{
-  width:80%;
-  max-width:350px;
-  border-radius:18px;
-  box-shadow:0 0 35px #ff007f;
+  width:85%;
+  max-width:370px;
+  border-radius:20px;
+  box-shadow:0 0 45px #ff007f;
   margin-bottom:22px;
-  animation:reveal 2s ease;
+  animation:zoomIn 3s ease;
 }
 
 .final{
   color:#ffc1df;
   font-style:italic;
-  text-shadow:0 0 18px #ff007f;
+  text-shadow:0 0 20px #ff007f;
 }
 
 .heart{
@@ -69,16 +70,26 @@ p{
 }
 
 .flash{
-  animation:flash 0.7s ease;
+  animation:flash 0.8s ease;
 }
 
 @keyframes pulse{
   50%{transform:scale(1.2);}
 }
 
-@keyframes reveal{
-  from{opacity:0; transform:scale(.8);}
-  to{opacity:1; transform:scale(1);}
+@keyframes fade{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+@keyframes cinema{
+  from{opacity:0; transform:scale(.7) translateY(40px);}
+  to{opacity:1; transform:scale(1) translateY(0);}
+}
+
+@keyframes zoomIn{
+  from{opacity:0; transform:scale(.75); filter:blur(6px);}
+  to{opacity:1; transform:scale(1); filter:blur(0);}
 }
 
 @keyframes fall{
@@ -87,7 +98,7 @@ p{
 
 @keyframes flash{
   0%{background:white;}
-  100%{background:radial-gradient(circle,#1a0008,#000);}
+  100%{background:radial-gradient(circle,#25000d,#000);}
 }
 </style>
 </head>
@@ -108,7 +119,7 @@ Se sei pronta... tocca il regalo.
 
 <div id="message">
 
-<img src="IMG_20260426_232240.jpg">alt="Disegno">
+<img src="IMG_20260426_232240.jpg" alt="Disegno">
 
 <p class="final">
 Questo non è solo un regalo.<br><br>
@@ -129,17 +140,17 @@ function openGift(){
   createHearts();
 
   if(navigator.vibrate){
-    navigator.vibrate([120,80,120]);
+    navigator.vibrate([150,80,150]);
   }
 }
 
 function createHearts(){
-  for(let i=0;i<45;i++){
+  for(let i=0;i<60;i++){
     let heart=document.createElement("div");
     heart.className="heart";
     heart.innerHTML="❤";
     heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(12+Math.random()*18)+"px";
+    heart.style.fontSize=(12+Math.random()*22)+"px";
     heart.style.animationDelay=Math.random()*3+"s";
     heart.style.opacity=Math.random();
     document.body.appendChild(heart);
