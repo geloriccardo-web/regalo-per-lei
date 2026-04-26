@@ -6,128 +6,80 @@
 
 <style>
 body{
-    margin:0;
-    background: radial-gradient(circle, #0a0000, #000000);
-    font-family: 'Georgia', serif;
-    color: white;
-    text-align: center;
-    overflow: hidden;
+  margin:0;
+  background: radial-gradient(circle, #0a0000, #000000);
+  font-family: 'Georgia', serif;
+  color: white;
+  text-align: center;
+  overflow: hidden;
 }
 
 .container{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding:20px;
+}
+
+h1{
+  font-size:32px;
+  margin-bottom:20px;
+  animation:fade 2s ease;
+}
+
+p{
+  font-size:18px;
+  max-width:300px;
+  margin:auto;
+  line-height:1.6;
+  animation:fade 3s ease;
+}
+
+button{
+  margin-top:20px;
+  padding:12px 20px;
+  background:#90004d;
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ff007f;
+  transform:scale(1.1);
 }
 
 #gift{
-    font-size:60px;
-    cursor:pointer;
-    transition:0.3s;
+  display:none;
+  margin-top:40px;
+  animation:fade 2s ease;
 }
 
-#gift:hover{
-    transform:scale(1.2);
+img{
+  max-width:80%;
+  border-radius:15px;
+  box-shadow:0 0 25px #ff007f;
+  animation:glow 2s infinite alternate;
 }
 
-#message{
-    display:none;
-    margin-top:20px;
-    animation:fade 2s ease;
-}
-
-h1{
-    font-size:28px;
-}
-
-p{
-    font-size:18px;
-    max-width:300px;
-    margin:auto;
-    line-height:1.5;
+.final-text{
+  margin-top:25px;
+  font-size:18px;
+  font-style:italic;
 }
 
 @keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<div id="gift" onclick="openGift()">🎁</div>
-
-<div id="message">
-<h1>Per te</h1>
-<p>
-Non è solo un regalo…  
-è un pezzo di me.  
-
-Tra tutto il rumore,  
-sei una di quelle poche cose  
-che riescono a farmi sentire qualcosa di vero.  
-
-E forse non sarà perfetto…  
-ma è sincero.
-</p>
-</div>
-
-</div>
-
-<script>
-function openGift(){
-    document.getElementById("gift").style.display="none";
-    document.getElementById("message").style.display="block";
-}
-</script>
-
-</body>
-</html>    animation:fade 2s ease;
+  from{opacity:0;}
+  to{opacity:1;}
 }
 
-h1{
-    font-size:28px;
-}
-
-p{
-    font-size:18px;
-    max-width:300px;
-    margin:auto;
-    line-height:1.5;
-}
-
-@keyframes fade{
-    from{opacity:0;}
-    to{opacity    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background-color: #99004d;
-}
-
-#gift {
-    display: none;
-    margin-top: 40px;
-}
-
-img {
-    max-width: 80%;
-    border-radius: 15px;
-    box-shadow: 0 0 25px #99004d;
-}
-
-.final-text {
-    margin-top: 25px;
-    font-size: 18px;
-    font-style: italic;
+@keyframes glow{
+  from{box-shadow:0 0 10px #ff007f;}
+  to{box-shadow:0 0 30px #ff007f;}
 }
 </style>
 
@@ -140,15 +92,11 @@ img {
 <h1>Ho qualcosa per te...</h1>
 
 <p>
-Ci sono cose che non si comprano…  
-si creano.<br><br>
-
+Ci sono cose che non si comprano... si creano.<br><br>
 Ho messo tempo, pensieri  
 e un pezzo di cuore  
 dentro qualcosa che parla di te.<br><br>
-
-Se sei pronta…  
-scoprilo.
+Se sei pronta... scoprilo.
 </p>
 
 <button onclick="showGift()">
@@ -157,10 +105,10 @@ Scopri cosa ho per te
 
 <div id="gift">
 
-<img src="https://via.placeholder.com/600x400.png?text=Qui+apparirà+il+disegno" alt="Disegno">
+<img src="https://via.placeholder.com/600x400.png?text=Il+tuo+disegno" alt="Disegno">
 
 <p class="final-text">
-Questo non è solo un disegno.  
+Questo non è solo un disegno.<br>
 È il modo più silenzioso  
 che ho trovato  
 per dirti che sei importante per me.
@@ -171,11 +119,10 @@ per dirti che sei importante per me.
 </div>
 
 <script>
-
-function showGift() {
-    document.getElementById("gift").style.display = "block";
+function showGift(){
+  document.getElementById("gift").style.display = "block";
+  document.querySelector("button").style.display = "none";
 }
-
 </script>
 
 </body>
