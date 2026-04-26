@@ -42,6 +42,16 @@ p{
 
 #message{
   display:none;
+  margin-top:25px;
+  animation:reveal 2s ease;
+}
+
+#message img{
+  width:80%;
+  max-width:350px;
+  border-radius:18px;
+  box-shadow:0 0 35px #ff007f;
+  margin-bottom:22px;
   animation:reveal 2s ease;
 }
 
@@ -88,7 +98,7 @@ p{
 
 <h1>Ho qualcosa per te...</h1>
 
-<p id="intro">
+<p>
 Ci sono cose che non si comprano... si creano.<br><br>
 Ho messo tempo, pensieri e un pezzo di cuore dentro qualcosa che parla di te.<br><br>
 Se sei pronta... tocca il regalo.
@@ -97,12 +107,16 @@ Se sei pronta... tocca il regalo.
 <div id="gift" onclick="openGift()">🎁</div>
 
 <div id="message">
+
+<img src="disegno.jpg" alt="Disegno">
+
 <p class="final">
 Questo non è solo un regalo.<br><br>
 È un piccolo pezzo di me,<br>
 creato nel silenzio,<br>
 per dirti che sei importante.
 </p>
+
 </div>
 
 </div>
