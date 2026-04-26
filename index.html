@@ -11,7 +11,7 @@ body{
     font-family: 'Georgia', serif;
     color: white;
     text-align: center;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .container{
@@ -35,6 +35,58 @@ body{
     display:none;
     margin-top:20px;
     animation:fade 2s ease;
+}
+
+h1{
+    font-size:28px;
+}
+
+p{
+    font-size:18px;
+    max-width:300px;
+    margin:auto;
+    line-height:1.5;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="gift" onclick="openGift()">🎁</div>
+
+<div id="message">
+<h1>Per te</h1>
+<p>
+Non è solo un regalo…  
+è un pezzo di me.  
+
+Tra tutto il rumore,  
+sei una di quelle poche cose  
+che riescono a farmi sentire qualcosa di vero.  
+
+E forse non sarà perfetto…  
+ma è sincero.
+</p>
+</div>
+
+</div>
+
+<script>
+function openGift(){
+    document.getElementById("gift").style.display="none";
+    document.getElementById("message").style.display="block";
+}
+</script>
+
+</body>
+</html>    animation:fade 2s ease;
 }
 
 h1{
