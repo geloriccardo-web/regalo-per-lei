@@ -11,7 +11,7 @@ body{
   color:white;
   font-family:Georgia,serif;
   text-align:center;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
 .container{
@@ -25,7 +25,6 @@ body{
 
 h1{
   text-shadow:0 0 25px #ff0066;
-  animation:fade 2s ease;
 }
 
 p{
@@ -54,6 +53,7 @@ p{
   box-shadow:0 0 45px #ff007f;
   margin-bottom:22px;
   animation:zoomIn 3s ease;
+  display:block;
 }
 
 .final{
@@ -67,6 +67,7 @@ p{
   top:-20px;
   color:#ff007f;
   animation:fall 5s linear infinite;
+  z-index:0;
 }
 
 .flash{
@@ -75,11 +76,6 @@ p{
 
 @keyframes pulse{
   50%{transform:scale(1.2);}
-}
-
-@keyframes fade{
-  from{opacity:0;}
-  to{opacity:1;}
 }
 
 @keyframes cinema{
@@ -109,7 +105,7 @@ p{
 
 <h1>Ho qualcosa per te...</h1>
 
-<p>
+<p id="intro">
 Ci sono cose che non si comprano... si creano.<br><br>
 Ho messo tempo, pensieri e un pezzo di cuore dentro qualcosa che parla di te.<br><br>
 Se sei pronta... tocca il regalo.
@@ -118,39 +114,50 @@ Se sei pronta... tocca il regalo.
 <div id="gift" onclick="openGift()">🎁</div>
 
 <div id="message">
-
 <img src="IMG_20260426_232240.jpg" alt="Disegno">
 
-<p class="final">
-Questo non è solo un regalo.<br><br>
-È un piccolo pezzo di me,<br>
-creato nel silenzio,<br>
-per dirti che sei importante.
-</p>
-
+<p class="final" id="finalText"></p>
 </div>
 
 </div>
 
 <script>
+const text = "Questo non è solo un regalo.\n\nÈ un piccolo pezzo di me,\ncreato nel silenzio,\nper dirti che sei importante.";
+
 function openGift(){
   document.body.classList.add("flash");
   document.getElementById("gift").style.display="none";
   document.getElementById("message").style.display="block";
   createHearts();
+  typeText();
 
   if(navigator.vibrate){
     navigator.vibrate([150,80,150]);
   }
 }
 
+function typeText(){
+  let i = 0;
+  const box = document.getElementById("finalText");
+  box.innerHTML = "";
+
+  const timer = setInterval(() => {
+    if(i < text.length){
+      box.innerHTML += text[i] === "\n" ? "<br>" : text[i];
+      i++;
+    } else {
+      clearInterval(timer);
+    }
+  }, 45);
+}
+
 function createHearts(){
-  for(let i=0;i<60;i++){
+  for(let i=0;i<70;i++){
     let heart=document.createElement("div");
     heart.className="heart";
     heart.innerHTML="❤";
     heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(12+Math.random()*22)+"px";
+    heart.style.fontSize=(12+Math.random()*24)+"px";
     heart.style.animationDelay=Math.random()*3+"s";
     heart.style.opacity=Math.random();
     document.body.appendChild(heart);
