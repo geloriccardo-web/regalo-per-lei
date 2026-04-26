@@ -7,10 +7,11 @@
 <style>
 body{
   margin:0;
-  background: radial-gradient(circle, #160000, #000);
-  font-family: Georgia, serif;
+  background:radial-gradient(circle,#1a0008,#000);
   color:white;
+  font-family:Georgia,serif;
   text-align:center;
+  overflow:hidden;
 }
 
 .container{
@@ -23,34 +24,31 @@ body{
 }
 
 h1{
-  font-size:32px;
-  text-shadow:0 0 15px #ff0055;
+  text-shadow:0 0 20px #ff0066;
 }
 
 p{
   max-width:330px;
   line-height:1.7;
-  font-size:17px;
 }
 
 #gift{
-  font-size:80px;
+  font-size:85px;
   cursor:pointer;
   margin-top:25px;
-  animation:pulse 1.5s infinite;
-  filter:drop-shadow(0 0 25px #ff007f);
+  animation:pulse 1.4s infinite;
+  filter:drop-shadow(0 0 30px #ff007f);
 }
 
 #message{
   display:none;
-  margin-top:25px;
-  animation:fade 2s ease;
+  animation:reveal 2s ease;
 }
 
 .final{
-  color:#ffb6d9;
-  text-shadow:0 0 15px #ff007f;
+  color:#ffc1df;
   font-style:italic;
+  text-shadow:0 0 18px #ff007f;
 }
 
 .heart{
@@ -58,25 +56,28 @@ p{
   top:-20px;
   color:#ff007f;
   animation:fall 5s linear infinite;
-  font-size:20px;
+}
+
+.flash{
+  animation:flash 0.7s ease;
 }
 
 @keyframes pulse{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.18);}
-  100%{transform:scale(1);}
+  50%{transform:scale(1.2);}
 }
 
-@keyframes fade{
-  from{opacity:0; transform:translateY(20px);}
-  to{opacity:1; transform:translateY(0);}
+@keyframes reveal{
+  from{opacity:0; transform:scale(.8);}
+  to{opacity:1; transform:scale(1);}
 }
 
 @keyframes fall{
-  to{
-    transform:translateY(110vh);
-    opacity:0;
-  }
+  to{transform:translateY(110vh); opacity:0;}
+}
+
+@keyframes flash{
+  0%{background:white;}
+  100%{background:radial-gradient(circle,#1a0008,#000);}
 }
 </style>
 </head>
@@ -87,7 +88,7 @@ p{
 
 <h1>Ho qualcosa per te...</h1>
 
-<p>
+<p id="intro">
 Ci sono cose che non si comprano... si creano.<br><br>
 Ho messo tempo, pensieri e un pezzo di cuore dentro qualcosa che parla di te.<br><br>
 Se sei pronta... tocca il regalo.
@@ -108,18 +109,25 @@ per dirti che sei importante.
 
 <script>
 function openGift(){
-  document.getElementById("gift").style.display = "none";
-  document.getElementById("message").style.display = "block";
+  document.body.classList.add("flash");
+  document.getElementById("gift").style.display="none";
+  document.getElementById("message").style.display="block";
   createHearts();
+
+  if(navigator.vibrate){
+    navigator.vibrate([120,80,120]);
+  }
 }
 
 function createHearts(){
-  for(let i = 0; i < 25; i++){
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDelay = Math.random() * 3 + "s";
+  for(let i=0;i<45;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(12+Math.random()*18)+"px";
+    heart.style.animationDelay=Math.random()*3+"s";
+    heart.style.opacity=Math.random();
     document.body.appendChild(heart);
   }
 }
