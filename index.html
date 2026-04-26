@@ -25,11 +25,16 @@ body{
 
 h1{
   text-shadow:0 0 25px #ff0066;
+  transition:.5s;
 }
 
 p{
   max-width:330px;
   line-height:1.7;
+}
+
+#intro{
+  min-height:120px;
 }
 
 #gift{
@@ -50,16 +55,22 @@ p{
   width:85%;
   max-width:370px;
   border-radius:20px;
-  box-shadow:0 0 45px #ff007f;
   margin-bottom:22px;
-  animation:zoomIn 3s ease;
   display:block;
+  animation:zoomIn 3s ease, breathing 6s infinite ease-in-out;
+  box-shadow:
+    0 0 25px #ff007f,
+    0 0 60px #ff007f,
+    0 0 120px rgba(255,0,120,0.6);
 }
 
 .final{
   color:#ffc1df;
   font-style:italic;
-  text-shadow:0 0 20px #ff007f;
+  text-shadow:
+    0 0 10px #ff007f,
+    0 0 25px #ff007f,
+    0 0 50px rgba(255,0,120,0.6);
 }
 
 .heart{
@@ -67,11 +78,10 @@ p{
   top:-20px;
   color:#ff007f;
   animation:fall 5s linear infinite;
-  z-index:0;
 }
 
 .flash{
-  animation:flash 0.8s ease;
+  animation:flash .8s ease;
 }
 
 @keyframes pulse{
@@ -86,6 +96,12 @@ p{
 @keyframes zoomIn{
   from{opacity:0; transform:scale(.75); filter:blur(6px);}
   to{opacity:1; transform:scale(1); filter:blur(0);}
+}
+
+@keyframes breathing{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.03);}
+  100%{transform:scale(1);}
 }
 
 @keyframes fall{
@@ -105,11 +121,7 @@ p{
 
 <h1>Ho qualcosa per te...</h1>
 
-<p id="intro">
-Ci sono cose che non si comprano... si creano.<br><br>
-Ho messo tempo, pensieri e un pezzo di cuore dentro qualcosa che parla di te.<br><br>
-Se sei pronta... tocca il regalo.
-</p>
+<p id="intro"></p>
 
 <div id="gift" onclick="openGift()">🎁</div>
 
@@ -122,28 +134,57 @@ Se sei pronta... tocca il regalo.
 </div>
 
 <script>
-const text = "Questo non è solo un regalo.\n\nÈ un piccolo pezzo di me,\ncreato nel silenzio,\nper dirti che sei importante.";
+const introText =
+"Ci sono cose che non si comprano... si creano.\n\n" +
+"Ho messo tempo, pensieri e un pezzo di cuore dentro qualcosa che parla di te.\n\n" +
+"Se sei pronta... tocca il regalo.\n(fidati di me)";
+
+const finalText =
+"Questo non è solo un regalo.\n\n" +
+"È un piccolo pezzo di me,\n" +
+"creato nel silenzio,\n" +
+"per dirti che sei importante.";
+
+window.onload = function(){
+  typeIntro();
+};
+
+function typeIntro(){
+  let i = 0;
+  const box = document.getElementById("intro");
+  box.innerHTML = "";
+
+  const timer = setInterval(() => {
+    if(i < introText.length){
+      box.innerHTML += introText[i] === "\n" ? "<br>" : introText[i];
+      i++;
+    } else {
+      clearInterval(timer);
+    }
+  }, 35);
+}
 
 function openGift(){
   document.body.classList.add("flash");
+  document.querySelector("h1").style.transform = "scale(1.1)";
   document.getElementById("gift").style.display="none";
   document.getElementById("message").style.display="block";
   createHearts();
-  typeText();
+  typeFinal();
 
   if(navigator.vibrate){
-    navigator.vibrate([150,80,150]);
+    navigator.vibrate([150,80,150,80,200]);
   }
 }
 
-function typeText(){
+function typeFinal(){
   let i = 0;
   const box = document.getElementById("finalText");
   box.innerHTML = "";
 
   const timer = setInterval(() => {
-    if(i < text.length){
-      box.innerHTML += text[i] === "\n" ? "<br>" : text[i];
+    if(i < finalText.length){
+      box.innerHTML += finalText[i] === "\n" ? "<br>" : finalText[i];
       i++;
     } else {
       clearInterval(timer);
@@ -152,7 +193,7 @@ function typeText(){
 }
 
 function createHearts(){
-  for(let i=0;i<70;i++){
+  for(let i=0;i<80;i++){
     let heart=document.createElement("div");
     heart.className="heart";
     heart.innerHTML="❤";
